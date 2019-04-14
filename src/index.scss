@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css?family=Carter+One');
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #FFD388;
+}
+
+button {
+  border: none;
+}
+
+button:disabled,
+button[disabled] {
+  background: gray !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+img {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 !important;
+}
+
+li {
+  padding: 0;
+  margin: 0;
+}
+
+label {
+  display: inline-block;
+  // margin-left: 10px;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.bottom-bun {
+  position: relative;
+  z-index: -12;
+}
+
+.bottom-bun-wrapper {
+  position: relative;
+  margin-top: 16px;
+}
+
+.stage-wrapper {
+  // width: 80%;
+  width: 208px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.burger-items-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.burger-item {
+  margin-bottom: -70px;
+  position: relative;
+}
+
+.top-bun {
+  margin-bottom: -50px;
+  position: relative;
+  z-index: 1;
+}
+
+.ingredient-price {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.ketchup {
+  position: absolute;
+  bottom: 16px;
+  z-index: -11;
+  transform: scaleY(0.6);
+}
+
+.mayo {
+  position: absolute;
+  bottom: 16px;
+  z-index: -10;
+  transform: scaleY(0.6);
+}
+
+.Cheese {
+  margin-bottom: -75px;
+}
+
+.dashboard-wrapper {
+  // height: 100vh;
+  // width: 360px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 100px auto;
+}
+
+.ingredient {
+  padding: 10px 0;
+  cursor: pointer;
+  &:hover {
+    background: #ff000022;
+  }
+}
+
+.addOrder {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 100px auto;
+  .qty {
+    width: 70px;
+  }
+  .addToCart {
+    display: inline-block;
+    width: 150px;
+    margin: 0 auto;
+    background: #710502;
+    color: white !important;
+
+    &:hover {
+      background: #B30904;
+      color: white;
+    }
+  }
+}
+
+.dash-burger-price {
+  font-size: 3rem;
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.cart-wrapper {
+  margin: 0 auto;
+}
+
+.cart-item-wrapper {
+  display: grid;
+  grid-template-columns: 100px auto;
+  margin-bottom: 3rem;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & > button {
+    background: #D9200D;
+    color: white;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+    height: 20px;
+    border: none;
+    line-height: 0;
+  }
+}
+
+.main-wrapper {
+  // width: 360px;
+  // min-width: 360px;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .main-wrapper {
+    max-width: 360px;
+  }
+
+}
+
+.checkout {
+  width: 100%;
+  background: #4d6219;
+  color: white;
+  &:hover,
+  &:focus {
+    color: white;
+    background: #384713;
+  }
+}
+
+.main-title {
+  text-align: center;
+  background: #f17b15;
+
+  h1 {
+    font-family: 'Carter One', cursive;
+    padding: 1rem 0;
+    color: #FFF300;
+  }
+}
+
+.cart-modal {
+  background: #eee;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 360px;
+  padding: 20px 10px;
+  z-index: 2;
+  border-radius: 10px;
+  box-shadow: 0 20px 20px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.cart-modal-close {
+  position: absolute;
+  font-size: 4rem;
+  // transform: translate(-50%, -50%);
+  top: 0;
+  right: 0;
+  background: #D9200D;
+  color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 0 10px;
+  cursor: pointer;
+}
+
+.red-button, .red-button:focus {
+  background: #D9200D;
+  color: white;
+  &:hover {
+    color: white;
+    background: #B31C0B;
+  }
+}
