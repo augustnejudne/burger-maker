@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import bottomBun from '../assets/bottom-bun.svg';
 import topBun from '../assets/top-bun.svg';
 
@@ -6,7 +6,9 @@ import ketchupImg from '../assets/ketchup.svg';
 import mayoImg from '../assets/mayo.svg';
 
 const CartItem = ({ item, removeCartItem, cartItemIndex }) => {
-  console.log(item);
+  useEffect(() => {
+    // console.log('cartItem mounted');
+  }, [])
   const { ketchup, mayo, orderBurger, orderPrice, orderQty } = item;
 
   const renderBurger = () => {

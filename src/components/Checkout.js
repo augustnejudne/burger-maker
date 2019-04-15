@@ -1,6 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 const Checkout = ({ toggleShowCheckout }) => {
+  useEffect(() => {
+    // console.log('cart mounted');
+  }, [])
   return (
     <Fragment>
       <div className="cart-modal-bg" onClick={toggleShowCheckout} />

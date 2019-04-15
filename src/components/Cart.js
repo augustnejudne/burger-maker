@@ -1,18 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import CartItem from './CartItem.js';
 
-const Cart = ({ cart, removeCartItem, toggleShowCart, toggleShowCheckout }) => {
-  console.log(cart);
-
-  const renderTotal = () => {
-    if (cart.length === 0) {
-      return 0;
-    }
-    if (cart.length === 1) {
-      return cart[0].orderPrice;
-    }
-    return cart.reduce((a, b) => a.orderPrice + b.orderPrice);
-  }
+const Cart = ({ cart, removeCartItem, toggleShowCart, toggleShowCheckout, grandTotal }) => {
+  useEffect(() => {
+    // console.log('cart mounted');
+  }, [])
   return (
     <Fragment>
       <div className="cart-modal-bg" onClick={toggleShowCart} />
@@ -27,7 +19,7 @@ const Cart = ({ cart, removeCartItem, toggleShowCart, toggleShowCheckout }) => {
           ) : (
             cart.map((item, i) => {
               return (
-                <div>
+                <div key={i}>
                   <CartItem
                     key={i}
                     item={item}
@@ -39,7 +31,7 @@ const Cart = ({ cart, removeCartItem, toggleShowCart, toggleShowCheckout }) => {
             })
           )}
           <h5>
-            Total: &#8369; {renderTotal()}
+            Total: &#8369; {grandTotal}
           </h5>
           <button className="checkout" onClick={toggleShowCheckout}>Check out</button>
         </div>

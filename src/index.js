@@ -4,6 +4,7 @@ import 'skeleton-css/css/normalize.css';
 import 'skeleton-css/css/skeleton.css';
 import './index.scss';
 
+
 import BurgerDashboard from './components/BurgerDashboard';
 
 ReactDOM.render(<BurgerDashboard />, document.getElementById('root'));

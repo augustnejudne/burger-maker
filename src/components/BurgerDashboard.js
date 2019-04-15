@@ -65,6 +65,7 @@ class BurgerDashboard extends Component {
       showCart: false,
       showCheckout: false,
       itemAdded: false,
+      grandTotal: 0,
     };
     this.qtyInput = React.createRef();
   }
@@ -75,15 +76,10 @@ class BurgerDashboard extends Component {
       return;
     }
     burgerCopy.unshift(part);
-    this.setState(
-      {
-        burger: burgerCopy,
-        dashBurgerPrice: this.state.dashBurgerPrice + part.price,
-      },
-      () => {
-        console.log(this.state.dashBurgerPrice);
-      }
-    );
+    this.setState({
+      burger: burgerCopy,
+      dashBurgerPrice: this.state.dashBurgerPrice + part.price,
+    });
   };
 
   removePart = () => {
@@ -92,15 +88,10 @@ class BurgerDashboard extends Component {
       return;
     }
     const removedPart = burgerCopy.shift();
-    this.setState(
-      {
-        burger: burgerCopy,
-        dashBurgerPrice: this.state.dashBurgerPrice - removedPart.price,
-      },
-      () => {
-        console.log(this.state.dashBurgerPrice);
-      }
-    );
+    this.setState({
+      burger: burgerCopy,
+      dashBurgerPrice: this.state.dashBurgerPrice - removedPart.price,
+    });
   };
 
   clear = () => {
@@ -124,11 +115,12 @@ class BurgerDashboard extends Component {
   handleAddToCart = () => {
     const orderQty = this.state.qty;
     const orderBurger = this.state.burger;
-    const orderPrice = this.state.dashBurgerPrice;
+    const burgerPrice = this.state.dashBurgerPrice;
     const ketchup = this.state.ketchup;
     const mayo = this.state.mayo;
+    const orderPrice = burgerPrice * orderQty;
+    const grandTotal = this.state.grandTotal + orderPrice;
     if (orderQty < 1 || orderBurger.length < 1) {
-      console.log('walang order');
       return;
     }
     this.setState(
@@ -140,12 +132,13 @@ class BurgerDashboard extends Component {
           {
             orderQty,
             orderBurger,
-            orderPrice: orderPrice * orderQty,
+            orderPrice,
             ketchup,
             mayo,
           },
         ],
         dashBurgerPrice: 0,
+        grandTotal,
       },
       () => {
         this.handleItemAdded();
@@ -247,6 +240,7 @@ class BurgerDashboard extends Component {
             removeCartItem={this.removeCartItem}
             toggleShowCart={this.toggleShowCart}
             toggleShowCheckout={this.toggleShowCheckout}
+            grandTotal={this.state.grandTotal}
           />
         ) : null}
         {this.state.showCheckout ? <Checkout toggleShowCheckout={this.toggleShowCheckout} /> : null}
