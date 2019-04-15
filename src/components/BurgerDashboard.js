@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Ingredients from './Ingredients';
 import Stage from './Stage';
-import Cart from './Cart.js';
+import Cart from './Cart';
+import Checkout from './Checkout';
 
 import bottomBun from '../assets/bottom-bun.svg';
 import topBun from '../assets/top-bun.svg';
@@ -62,6 +63,8 @@ class BurgerDashboard extends Component {
       dashBurgerPrice: 0,
       total: 0,
       showCart: false,
+      showCheckout: false,
+      itemAdded: false,
     };
     this.qtyInput = React.createRef();
   }
@@ -145,16 +148,16 @@ class BurgerDashboard extends Component {
         dashBurgerPrice: 0,
       },
       () => {
-        const x = this.state.cart.reduce(function(accumulator, currentValue) {
-          return accumulator.orderPrice + currentValue.orderPrice;
-        });
-        console.log('========================');
-        console.log('BurgerDashboard.js');
-        console.log('WATCH THIS!!!');
-        console.log(x);
-        console.log('========================');
+        this.handleItemAdded();
       }
     );
+  };
+
+  handleItemAdded = () => {
+    this.setState({ itemAdded: true });
+    setTimeout(() => {
+      this.setState({ itemAdded: false });
+    }, 1000);
   };
 
   removeCartItem = i => {
@@ -168,6 +171,14 @@ class BurgerDashboard extends Component {
     });
   };
 
+  toggleShowCart = () => {
+    this.setState({ showCart: this.state.showCart ? false : true });
+  };
+
+  toggleShowCheckout = () => {
+    this.setState({ showCheckout: this.state.showCheckout ? false : true, showCart: false });
+  };
+
   render() {
     return (
       <Fragment>
@@ -175,15 +186,11 @@ class BurgerDashboard extends Component {
           <h1>Cloudy Burgers</h1>
         </div>
         <div className="main-wrapper">
-          <button
-            className="cart-button"
-            onClick={() =>
-              this.setState({ showCart: this.state.showCart ? false : true })
-            }
-          >
+          <button className="cart-button u-pull-right" onClick={this.toggleShowCart}>
             View Cart:&nbsp;
             {`${this.state.cart.length} item(s)`}
           </button>
+          <div className="u-cf" />
           <div className="dashboard-wrapper">
             <Ingredients
               ingredients={ingredients}
@@ -205,6 +212,11 @@ class BurgerDashboard extends Component {
               removePart={this.removePart}
               dashBurgerPrice={this.state.dashBurgerPrice}
             />
+          </div>
+          <div className="itemAdded-wrapper">
+            {this.state.itemAdded ? (
+              <span className="itemAdded-notification">Item added to cart</span>
+            ) : null}
           </div>
           <div className="addOrder">
             <label>
@@ -228,35 +240,16 @@ class BurgerDashboard extends Component {
               Add to Cart
             </button>
           </div>
-          {this.state.showCart ? (
-            <div className="cart-modal">
-              <Cart
-                cart={this.state.cart}
-                removeCartItem={this.removeCartItem}
-              />
-              <span
-                className="cart-modal-close"
-                onClick={() =>
-                  this.setState({
-                    showCart: this.state.showCart ? false : true,
-                  })
-                }
-              >
-                &times;
-              </span>
-              {this.state.cart.length !== 0 ? (
-                <div>
-                  <h5>Total: &#8369;{
-                    this.state.cart.length > 1 ?
-                    this.state.cart.reduce((a, b) => a.orderPrice + b.orderPrice) :
-                    this.state.cart[0].orderPrice
-                  }</h5>
-                  <button className="checkout">Check out</button>
-                </div>
-              ) : null}
-            </div>
-          ) : null}
         </div>
+        {this.state.showCart ? (
+          <Cart
+            cart={this.state.cart}
+            removeCartItem={this.removeCartItem}
+            toggleShowCart={this.toggleShowCart}
+            toggleShowCheckout={this.toggleShowCheckout}
+          />
+        ) : null}
+        {this.state.showCheckout ? <Checkout toggleShowCheckout={this.toggleShowCheckout} /> : null}
       </Fragment>
     );
   }
