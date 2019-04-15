@@ -29,7 +29,7 @@ const CartItem = ({ item, removeCartItem, cartItemIndex }) => {
 
   const renderCartItemBurger = () => {
     return (
-      <ul className="burger">
+      <ul className="burger cart-burger">
         <li>
           <img src={topBun} alt="top bun" width="100%" className={`top-bun`} />
         </li>

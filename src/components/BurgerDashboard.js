@@ -158,9 +158,10 @@ class BurgerDashboard extends Component {
     if (cartCopy.length < 1) {
       return;
     }
-    cartCopy.splice(i, 1);
+    const removedCartItem = cartCopy.splice(i, 1);
     this.setState({
       cart: cartCopy,
+      grandTotal: this.state.grandTotal - removedCartItem[0].orderPrice
     });
   };
 
