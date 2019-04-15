@@ -99,11 +99,11 @@ class BurgerDashboard extends Component {
   };
 
   toggleKetchup = () => {
-    this.setState({ ketchup: this.state.ketchup ? false : true });
+    this.setState({ ketchup: !this.state.ketchup });
   };
 
   toggleMayo = () => {
-    this.setState({ mayo: this.state.mayo ? false : true });
+    this.setState({ mayo: !this.state.mayo });
   };
 
   handleQty = () => {
@@ -165,11 +165,11 @@ class BurgerDashboard extends Component {
   };
 
   toggleShowCart = () => {
-    this.setState({ showCart: this.state.showCart ? false : true });
+    this.setState({ showCart: !this.state.showCart });
   };
 
   toggleShowCheckout = () => {
-    this.setState({ showCheckout: this.state.showCheckout ? false : true, showCart: false });
+    this.setState({ showCheckout: !this.state.showCheckout, showCart: false });
   };
 
   render() {
