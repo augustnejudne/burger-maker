@@ -48,11 +48,9 @@ const Ingredients = ({
           </label>
         </li>
         {renderIngredients()}
-        <li>
           <button className="red-button" onClick={() => clear()}>
             Clear
           </button>
-        </li>
       </ul>
     </div>
   );

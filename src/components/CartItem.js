@@ -70,7 +70,7 @@ const CartItem = ({ item, removeCartItem, cartItemIndex }) => {
             Price: <strong>&#8369;{orderPrice}</strong>
           </p>
         </div>
-        <button onClick={() => removeCartItem(cartItemIndex)}>remove</button>
+        <button className="red-button" onClick={() => removeCartItem(cartItemIndex)}>remove</button>
       </div>
       <div className="stage-wrapper">{renderCartItemBurger()}</div>
     </div>
