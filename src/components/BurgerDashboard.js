@@ -67,7 +67,6 @@ class BurgerDashboard extends Component {
       itemAdded: false,
       grandTotal: 0,
     };
-    this.qtyInput = React.createRef();
   }
 
   addPart = part => {
@@ -106,9 +105,9 @@ class BurgerDashboard extends Component {
     this.setState({ mayo: !this.state.mayo });
   };
 
-  handleQty = () => {
+  handleQty = (e) => {
     this.setState({
-      qty: this.qtyInput.current.value,
+      qty: e.target.value,
     });
   };
 
@@ -222,8 +221,7 @@ class BurgerDashboard extends Component {
                 max="100"
                 value={this.state.qty}
                 maxLength="3"
-                ref={this.qtyInput}
-                onChange={this.handleQty}
+                onChange={(e) => this.handleQty(e)}
               />
             </label>
             <button
