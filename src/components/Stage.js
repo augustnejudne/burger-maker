@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 
 const Stage = ({
   burger,
@@ -11,9 +11,6 @@ const Stage = ({
   removePart,
   dashBurgerPrice,
 }) => {
-  useEffect(() => {
-    // console.log('stage mounted');
-  }, []);
   const renderBurger = () => {
     return burger.map(({ img, name }, i) => {
       return (
@@ -36,7 +33,6 @@ const Stage = ({
       {
         burger.length > 0 && <div style={{position: 'absolute', top: 0, left: 0, textAlign: 'center', fontSize: '12px'}}>Click burger to remove top most ingredient</div>
       }
-
       <ul className="burger" onClick={() => removePart()}>
         <li>
           <img src={topBun} alt="top bun" width="100%" className={`top-bun`} />
